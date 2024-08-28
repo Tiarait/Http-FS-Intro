@@ -70,45 +70,90 @@ a:hover {
   transition: all 0.15s ease;
 }
 .btn {
-  transition: 0.3s;
+    transition: all .1s ease;
+    will-change: transform;
     margin-right: 8px;
     background: #d90647;
-    padding: 0.75rem 2.5rem;
-    color: #363636;
+    padding: 0.5rem 1rem;
+    color: white;
     border-radius: 0.5rem;
     font-size: 1.125rem;
-    font-weight: 700;
+    font-weight: 500;
     text-align: center;
     box-shadow: 10px 0 40px rgba(0, 0, 0, 0.15);
-    display: inline-block;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    transform: scale(1);
+
+    overflow: hidden;
+    position: relative;
+    &:after {
+      background: #fff;
+      content: "";
+      height: 155px;
+      left: -75px;
+      opacity: .2;
+      position: absolute;
+      top: -50px;
+      transform: rotate(35deg);
+      transition: all 550ms cubic-bezier(0.19, 1, 0.22, 1);
+      width: 50px;
+      z-index: -10;
+  }
 }
-@media (max-width: 768px) {
+.btn img {
+    height: 40px;
+    margin-right: 8px;
+}
+.btn .inside {
+    display: flex;
+    flex-direction: column;
+}
+@media (max-width: 850px) {
   .btn {
-    padding: 7px 2.5rem;
+    width: -webkit-fill-available;
+    justify-content: center;
     margin-left: 10px;
     margin-right: 10px;
+    margin-top: 10px;
+    flex: 2 2 140px;
   }
 }
 .btn:hover {
   background: #d90647;
   color: #ffffff;
   transform: scale(1.05);
+  &:after {
+    left: 120%;
+    transition: all 550ms cubic-bezier(0.19, 1, 0.22, 1);
+  }
 }
 .btn.gp {
+  color: white;
+  background: #363636;
+}
+.btn.youtube {
+  color: white;
   background: #363636;
 }
 .btn.pro {
-  background: #00ad13;
+  color: white;
+  background: #005309;
 }
 .btn span{
-
+  white-space: nowrap;
 }
 .download-btn {
-    background: #fff;
+    background: currentColor;
     background-clip: border-box;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+.download-btn-s {
+  font-size: .7rem;
+  font-weight: 400;
+  margin-right: auto;
 }
 .button:hover {
   color: #fff;
@@ -184,12 +229,22 @@ html[dir=rtl] .app__logo-wrapper {
   margin-left: 64px;
   margin-right: 0;
 }
+.developer__name {
+    font-size: var(--font-md);
+    color: #808080;
+    margin: 0;
+}
 @media (max-width: 768px) {
   .app__logo-wrapper {
     max-width: 100px;
     max-height: 100px;
     margin-right: 16px;
   }
+}
+.app__osversion-alarm--desktop {
+    font-size: var(--font-xxs);
+    color: #808080;
+    margin-top: 16px;
 }
 .app__logo {
   border-radius: 22.5%;
@@ -213,7 +268,7 @@ html[dir=rtl] .app__logo-wrapper {
 }
 .app__screenshots-list {
   display: grid;
-  grid-template-columns: 200px 200px 200px 200px 200px 200px 200px;
+  grid-template-columns: 200px 200px 200px 200px 200px 200px 200px 200px;
   grid-column-gap: 20px;
   padding: 30px 0;
 }
@@ -233,6 +288,7 @@ html[dir=rtl] .app__logo-wrapper {
   background: #65638f;
   clip-path: border-box;
   min-height: 128px;
+  border: .5px solid black;
 }
 .app__screenshot:hover {
   box-shadow: 0 24px 48px rgba(17, 16, 62, 0.12);
@@ -250,17 +306,30 @@ html[dir=rtl] .app__logo-wrapper {
 .app__buttons--mobile {
   display: none;
 }
-@media (max-width: 768px) {
+@media (max-width: 850px) {
+  .app__header {
+    margin-bottom: 28px;
+  }
+  .app__logo-wrapper {
+    max-width: 200px;
+    max-height: 200px;
+    margin-right: 36px;
+  }
   .app__buttons {
     margin-left: 0;
     margin-bottom: 64px;
   }
   .app__buttons--mobile {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
   }
   .app__buttons--desktop {
     display: none;
+  }
+}
+@media (max-width: 700px) {
+  .app__buttons--mobile {
+    flex-wrap: wrap;
   }
 }
 .app__button-play img {
@@ -301,10 +370,11 @@ html[dir=rtl] .app__logo-wrapper {
   }
 }
 .app__featured-content {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-column-gap: 32px;
+  display: flex;
+  column-gap: 22px;
+  row-gap: 22px;
   align-items: center;
+  flex-wrap: wrap;
 }
 .app__featured-span {
   color: white;
@@ -316,15 +386,16 @@ html[dir=rtl] .app__logo-wrapper {
 }
 @media (max-width: 768px) {
   .app__featured-content {
-    display: block;
     padding: 32px;
   }
 }
 .app__featured-image {
-  width: 100%;
+  width: 216px;
   margin: auto;
   min-height: 128px;
   display: -webkit-box;
+  border-radius: 16px;
+  background: #65638f;
 }
 
 .footer {

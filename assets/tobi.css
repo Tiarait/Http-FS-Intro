@@ -76,6 +76,7 @@
   overflow: hidden;
   overflow-y: auto;
   overscroll-behavior: contain;
+  border-radius: 8px;
 }
 
 .tobi [data-type] iframe,
